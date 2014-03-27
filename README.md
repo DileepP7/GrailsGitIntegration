@@ -1,0 +1,4 @@
+GrailsGitIntegration
+====================
+
+github management app
