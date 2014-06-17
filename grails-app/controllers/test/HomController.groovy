@@ -90,17 +90,8 @@ class HomController {
 		//render rest.getForObject("https://api.github.com/users/DileepPaudel/repos", String.class)
 		def code=params.code
 		RestTemplate rest=new RestTemplate();
-
-
-
-
-
-		def client_id="b7e55396d2959448544f";
-		//"42e51296f11550cd416d";
+                def client_id="b7e55396d2959448544f";
 		def client_secret="28d5bfbb55314d6e2815ac5e1ee370567b7c8445";
-		//"ba9814fd4f4c6c8b965e8b99741fba8ae4948735";
-
-
 		String result = rest.postForObject("https://github.com/login/oauth/access_token?client_id="+client_id+"&client_secret="+client_secret+"&code="+code,null, String.class)
 
 		def mine=result.substring(13, 53)
@@ -122,7 +113,6 @@ class HomController {
 	//@Secured(['ROLE_ADMIN'])
 	def ajaxrequest(){
 		def repos=params.repo;
-		// def org=params.org;
 		JSONObject resp=new JSONObject();
 
 		RestTemplate rest = new RestTemplate()
@@ -739,7 +729,8 @@ class HomController {
 		{
 			flash.message = 'Please enter your current password and a valid new password'
 			render view: 'accountSettings', model: [username: username,user:user]
-			return }
+			return 
+		}
 
 
 		if (!passwordEncoder.isPasswordValid(user.password, password, null /*salt*/))
